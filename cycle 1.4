@@ -1,0 +1,71 @@
+exp 1.4 1
+
+
+import pandas as pd
+orders = pd.read_table('http://bit.ly/movieusers')
+print("Overview of dataframe:")
+print(orders.head())
+print("shape:",orders.shape)
+print()
+user_cols=['user_id','age','gender','occupation','zip_code']
+users=pd.read_table('http://bit.ly/movieusers',sep='|',header=None,
+names=user_cols)
+print("Dataframe after modifying the default parameter values for read_table:")
+print(users.head())
+
+
+
+
+
+
+exp1.4 3
+
+import pandas as pd
+movies=pd.read_csv('https://bit.ly/imdbratings')
+print("Dataframe of top-rated IMDb movies:")
+print(movies.head())
+print()
+print("Different ways to filter rows of a pandas DataFrame by column value:")
+print("Example:Filter rows to only show movies with a duration of atleast 200 minutes")
+print("1.using for loop")
+booleans=[]
+for length in movies.duration:
+    if length>=200:
+        booleans.append(True)
+    else:
+        booleans.append(False)
+is_long=pd.Series(booleans)
+print(is_long.head())
+print()
+print("2.broadcasting")
+print(movies[movies.duration>=200])
+print()
+print("3.using 'loc' method")
+print(movies.loc[movies.duration>=200])
+
+
+
+
+
+exp1.4 4
+
+import pandas as pd
+orders=pd.read_table('http://bit.ly/chiporders')
+print("Dataframe:")
+print(orders.head())
+print()
+print("String methods in pandas:")
+print()
+print("'item_name'series(in uppercase):")
+print(orders.item_name.str.upper().head())
+print()
+print("Checks for a substring 'Chicken' in the given dataframe:")
+print(orders[orders.item_name.str.contains('Chicken')].head())
+print()
+print(orders.choice_description.str.replace('[\[\]]',").head())
+print()
+print("Examine the data type of each Series:")
+print(orders.dtypes)
+print()
+print("Dataframe after replacing '$' and converting string to float of 'item_price' series:")
+print(orders.item_price.str.replace('$',").astype(float))
